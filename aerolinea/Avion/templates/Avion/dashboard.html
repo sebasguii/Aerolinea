@@ -1,0 +1,38 @@
+{% extends 'base.html' %} <!-- Extiende la plantilla base -->
+
+{% block contenido %} <!-- Inicia el bloque de contenido -->
+
+<h2>Dashboard de Aviones</h2> <!-- Título de la sección -->
+<canvas id="grafico" width="400" height="200"></canvas> <!-- Lienzo para el gráfico -->
+
+<!-- Incluye la librería de Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+// Obtener el contexto del canvas para dibujar el gráfico
+const ctx = document.getElementById("grafico").getContext("2d");
+
+// Crear una nueva instancia de Chart
+const grafico = new Chart(ctx, {
+    type: 'bar', // Tipo de gráfico: barras
+    data: {
+        labels: {{ labels|safe }},  // Etiquetas para el eje X (nombres de aviones)
+        datasets: [{
+            label: 'avion',  // Título del dataset
+            data: {{ data|safe }},         // Datos (precios)
+            backgroundColor: 'rgba(54, 162, 235, 0.5)',  // Color de fondo de barras
+            borderColor: 'rgba(54, 162, 235, 1)',        // Color del borde de barras
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true  // Para que el eje Y inicie en 0
+            }
+        }
+    }
+});
+</script>
+
+{% endblock %}

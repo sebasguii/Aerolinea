@@ -27,4 +27,6 @@ urlpatterns = [
     path('Avion/agregar/',views.agregar_Avion, name='agregar_Avion'),
     path('Avion/editar/<int:id>/',views.editar_Avion, name='editar_Avion'),
     path('Avion/eliminar/<int:id>/',views.eliminar_Avion, name='eliminar_Avion'),
+    path('Avion/reporte/pdf/', views.generar_reporte_pdf, name='reporte_pdf'),
+    path('Avion/dashboard/', views.dashboard_aviones, name='dashboard_aviones'),
 ]
