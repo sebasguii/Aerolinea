@@ -14,19 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from Avion import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('',views.home, name='home'),
-    path('registro/', views.registro, name='registro'),
-    path('login/',views.iniciar_sesion, name='login'),
-    path('logout/',views.cerrar_sesion, name='logout'),
-    path('Avion/',views.lista_Avion, name='lista_Avion'),
-    path('Avion/agregar/',views.agregar_Avion, name='agregar_Avion'),
-    path('Avion/editar/<int:id>/',views.editar_Avion, name='editar_Avion'),
-    path('Avion/eliminar/<int:id>/',views.eliminar_Avion, name='eliminar_Avion'),
-    path('Avion/reporte/pdf/', views.generar_reporte_pdf, name='reporte_pdf'),
-    path('Avion/dashboard/', views.dashboard_aviones, name='dashboard_aviones'),
+    path('api/', include('Avion.api_urls')), 
+    path('api-auth/', include('rest_framework.urls')),
+
 ]
